@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # есть зашифрованное сообщение
@@ -21,4 +20,10 @@ secret_message = [
 # Требуется задать конкретные индексы, например secret_message[3][12:23:4]
 # Если нужны вычисления и разные пробы - делайте это в консоли пайтона, тут нужен только результат
 
-# TODO вывести расшифрованное сообщение
+word1 = secret_message[0][3]
+word2 = secret_message[1][9:13]
+word3 = secret_message[2][5:14:2]
+word4 = secret_message[3][-20:-25:-1]
+word5 = secret_message[4][-12:-17:-1]
+print(f'{word1} {word2} {word3} {word4} {word5}')
+
