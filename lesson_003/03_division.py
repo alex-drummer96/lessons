@@ -9,5 +9,12 @@
 #   Целочисленное деление ХХХ на YYY дает ZZZ
 
 a, b = 179, 37
-
-# TODO здесь ваш код
+result = a / b
+count = 0
+while result > int(result):
+    count += 1
+    a -= 1
+    result = a / b
+    if result == int(result):
+        break
+print('Целочисленное деление', a + count, 'на', b,  'дает результат', int(result), 'Oстаток при делении:', count)
