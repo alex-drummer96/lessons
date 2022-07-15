@@ -1,23 +1,35 @@
 import random
 
-_holder = []
+_holder = {}
+MAX_BUNCHES = 5
+MAX_BUNCH_SIZE = 20
+_sorted_keys = None
 
 
 def put_stones():
-    global _holder
-    _holder = []
-    for i in range(5):
-        _holder.append(random.randint(1, 20))
+    '''Расположить камни на игровой поверхности'''
+    global _holder, _sorted_keys
+    _holder = {}
+    for i in range(1, MAX_BUNCHES + 1):
+        _holder[i] = random.randint(1, MAX_BUNCH_SIZE)
+    _sorted_keys = sorted(_holder.keys())
 
 
 def take_from_bunch(position, quantity):
-    if 1 <= position <= len(_holder):
-        _holder[position - 1] -= quantity
+    """Взять камни из кучи"""
+    if position in _holder:
+        _holder[position] -= quantity
+        return True
+    else:
+        return False
 
 
 def get_bunches():
-    return _holder
+    res = []
+    for key in _sorted_keys:
+        res.append(_holder[key])
+    return res
 
 
 def is_game_over():
-    return sum(_holder) == 0
+    return sum(_holder.values()) == 0
