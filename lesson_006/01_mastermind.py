@@ -43,4 +43,27 @@
 # Это пример применения SOLID принципа (см https://goo.gl/GFMoaI) в архитектуре программ.
 # Точнее, в этом случае важен принцип единственной ответственности - https://goo.gl/rYb3hT
 
-# TODO здесь ваш код...
+from lessons.lesson_006.mastermind_engine import think_number, check_number
+
+
+def user():
+    count = 0
+    correct_answer = think_number()
+    while True:
+        you_variant = input('введите вариант числа')
+        count += 1
+        if check_number(number_version=you_variant, correct_answer=correct_answer) is True:
+            print(f'Вы выиграли за {count} ходов')
+            new_game()
+            break
+
+
+def new_game(answer='Нет'):
+    print("Хотите еще партию?")
+    answer = input("Введите Да или Нет")
+    if answer == 'Да':
+        user()
+    else:
+        print('До свидания')
+
+user()
