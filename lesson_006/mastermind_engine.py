@@ -1,25 +1,26 @@
 from random import randint
 
-
 def think_number():
-    '''Загадывает 4-ех значное число где каждая цифра уникальна '''
-    my_number = []
-    for i in range(20):
-        '''формируем список уникальных цифр'''
+    '''Загадывает 4-ех значное число где все цифры уникальны, а 1 - > 0'''
+    my_key = [0, 1, 2, 3]
+    my_value = []
+    my_dict = {}
+    for i in my_key:
+        '''Отличает 1 цифру от остальных'''
         if i == 0:
             num = randint(1, 9)
         else:
             num = randint(0, 9)
-        my_number.append(num)
-        if len(my_number) != len(set(my_number)):
-            my_number.remove(num)
-        if len(my_number) == 4:
-            break
-    dict_number = {}
-    for i in range(4):
-        '''защита от неверного порядка прочтения цифр'''
-        dict_number[i] = str(my_number[i])
-    return dict_number
+        '''Проверка на уникальность'''
+        if num in my_value:
+            my_key.append(i)
+        else:
+            my_value.append(num)
+            my_dict[i] = str(num)
+    sorted(my_dict.keys())
+    return my_dict
+
+
 
 
 def check_number(number_version, correct_answer):
