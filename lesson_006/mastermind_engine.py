@@ -1,5 +1,6 @@
 from random import randint
 
+
 def think_number():
     '''Загадывает 4-ех значное число где все цифры уникальны, а 1 - > 0'''
     my_key = [0, 1, 2, 3]
@@ -19,8 +20,6 @@ def think_number():
             my_dict[i] = str(num)
     sorted(my_dict.keys())
     return my_dict
-
-
 
 
 def check_number(number_version, correct_answer):
