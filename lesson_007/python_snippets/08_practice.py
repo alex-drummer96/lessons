@@ -69,19 +69,22 @@ class House:
     def __str__(self):
         return f"В доме осталось еды:{self.food}, в доме соталось денег: {self.money}"
 
-beavis = Man(name='Beavis')
-butthead = Man(name='Butthead')
+
+citizens = [
+    Man(name='Beavis'),
+    Man(name='Butthead'),
+    Man(name='Kenni')
+]
 house1 = House()
-beavis.settle_in_house(house=house1)
-butthead.settle_in_house(house=house1)
+for citizen in citizens:
+    citizen.settle_in_house(house=house1)
 
 for day in range(1, 366):
     cprint(f'******************************** DAY: {day} *******************************', color='yellow')
-    beavis.act()
-    butthead.act()
+    for citizen in citizens:
+        citizen.act()
+
     cprint(f'*********************** at the end of the day: {day} ***********************', color='yellow')
     cprint(house1, color='magenta')
-    cprint(beavis, color='blue')
-    cprint(butthead, color='green')
-
-
+    for citizen in citizens:
+        cprint(citizen, color='blue')
