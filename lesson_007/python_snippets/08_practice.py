@@ -83,7 +83,6 @@ for day in range(1, 366):
     cprint(f'******************************** DAY: {day} *******************************', color='yellow')
     for citizen in citizens:
         citizen.act()
-
     cprint(f'*********************** at the end of the day: {day} ***********************', color='yellow')
     cprint(house1, color='magenta')
     for citizen in citizens:
