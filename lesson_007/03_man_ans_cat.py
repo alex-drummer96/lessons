@@ -44,6 +44,7 @@ class Man:
             self.house.food -= 10
         else:
             print(f'{self.name} has no food')
+            self.shopping()
 
     def work(self):
         print(f'{self.name} went to work')
@@ -73,6 +74,7 @@ class Man:
             self.house.cat_food += 50
         else:
             print('No money - No honey')
+            self.work()
 
     def settle_in_house(self, house):
         self.house = house
@@ -95,7 +97,7 @@ class Man:
             self.eat()
         elif self.house.food < 10:
             self.shopping()
-        elif self.house.cat_food < 10:
+        elif self.house.cat_food < 30:
             self.buy_cat_food()
         elif self.house.dirt >= 100:
             self.clean_house()
@@ -112,7 +114,7 @@ class Man:
 class House:
 
     def __init__(self):
-        self.food = 10
+        self.food = 20
         self.money = 50
         self.cat_food = 10
         self.dirt = 0
@@ -134,9 +136,12 @@ class Cat:
         print(f'cat {self.name} is sleeping')
 
     def eat(self):
-        self.fullness += 20
-        self.house.cat_food -= 10
-        print(f'cat {self.name} ate')
+        if self.house.cat_food > 10:
+            self.fullness += 20
+            self.house.cat_food -= 10
+            print(f'cat {self.name} ate')
+        else:
+            print('not enough food for cat')
 
     def rip_wallpaper(self):
         self.fullness -= 10
@@ -160,16 +165,23 @@ class Cat:
 
 house1 = House()
 sasha = Man(name='Sasha')
-murzick = Cat(name='Murzick')
+cats = [
+    Cat(name='Murzick'),
+    Cat(name='Vasika'),
+    Cat(name='Matroskin')
+]
 sasha.settle_in_house(house=house1)
-sasha.pick_up_cat(house=house1, cat_name=murzick)
+for cat in cats:
+    sasha.pick_up_cat(house=house1, cat_name=cat)
 for day in range(1, 366):
     print(f'===================={day}==============================')
     sasha.act()
-    murzick.act()
+    for cat in cats:
+        cat.act()
     print(house1)
     print(sasha)
-    print(murzick)
+    for cat in cats:
+        print(cat)
 
 # Усложненное задание (делать по желанию)
 # Создать несколько (2-3) котов и подселить их в дом к человеку.
